@@ -1,0 +1,93 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    background-color: #0d1117;
+    color: #c9d1d9;
+    line-height: 1.6;
+}
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+header {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #161b22;
+    border-bottom: 1px solid #30363d;
+}
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    color: #f0f6fc;
+}
+header p {
+    font-size: 1.1em;
+    color: #8b949e;
+}
+header a {
+    color: #58a6ff;
+    text-decoration: none;
+}
+header a:hover {
+    text-decoration: underline;
+}
+main h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2em;
+    color: #f0f6fc;
+}
+.repos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+.repo-card {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 20px;
+    text-decoration: none;
+    color: #c9d1d9;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.repo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+.repo-card h3 {
+    margin: 0 0 10px 0;
+    color: #58a6ff;
+    font-size: 1.25em;
+    word-break: break-all;
+}
+.repo-card p {
+    margin: 0 0 15px 0;
+    flex-grow: 1; 
+    font-size: 0.9em;
+    color: #8b949e;
+}
+.repo-stats {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.8em;
+}
+.repo-stats span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-top: 1px solid #30363d;
+    font-size: 0.9em;
+    color: #8b949e;
+}
