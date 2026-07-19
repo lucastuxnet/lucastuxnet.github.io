@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucas A. Martins — Segurança da Informação & IEC 61850</title>
+<meta name="description" content="Lucas A. Martins — mestrando em Computação (Segurança da Informação) na UFU. Pesquisa em detecção de intrusão para redes IEC 61850 GOOSE com LLMs e plano de dados programável.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#0B0B0C;
+  --carbon:#141416;
+  --iron:#1E1E21;
+  --smoke:#8A8A93;
+  --bone:#EDEDEF;
+  --amber:#F6872A;
+  --amber-dim:#B25E15;
+  --wire:rgba(246,135,42,.22);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--void);color:var(--bone);
+  font-family:'Space Grotesk',system-ui,sans-serif;
+  line-height:1.65;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+
+/* ---------- barramento superior ---------- */
+.bus{
+  position:fixed;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--wire),transparent);
+  z-index:100;
+}
+.bus::after{
+  content:"";position:absolute;top:0;left:-12%;width:12%;height:100%;
+  background:linear-gradient(90deg,transparent,var(--amber),transparent);
+  animation:goose 4.2s linear infinite;
+}
+@keyframes goose{to{left:100%}}
+
+/* ---------- nav ---------- */
+nav{
+  position:fixed;top:2px;left:0;right:0;z-index:99;
+  backdrop-filter:blur(14px);
+  background:rgba(11,11,12,.72);
+  border-bottom:1px solid var(--iron);
+}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+.brand{font-family:'JetBrains Mono',monospace;font-size:.86rem;letter-spacing:.04em}
+.brand b{color:var(--amber);font-weight:700}
+.links{display:flex;gap:26px;font-size:.84rem;font-family:'JetBrains Mono',monospace}
+.links a{text-decoration:none;color:var(--smoke);transition:color .2s}
+.links a:hover,.links a:focus-visible{color:var(--amber)}
+@media(max-width:680px){.links{display:none}}
+
+/* ---------- hero ---------- */
+header{padding:190px 0 120px;position:relative}
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:.75rem;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--amber);
+  margin-bottom:26px;display:flex;align-items:center;gap:12px;
+}
+.eyebrow::before{content:"";width:40px;height:1px;background:var(--amber)}
+h1{
+  font-size:clamp(2.6rem,7.4vw,5.1rem);font-weight:700;
+  line-height:1.02;letter-spacing:-.035em;margin-bottom:28px;
+}
+h1 span{color:var(--amber)}
+.lede{font-size:clamp(1.02rem,2.1vw,1.25rem);color:var(--smoke);max-width:640px;margin-bottom:44px}
+.lede strong{color:var(--bone);font-weight:500}
+
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  font-family:'JetBrains Mono',monospace;font-size:.82rem;
+  padding:13px 22px;border-radius:3px;text-decoration:none;
+  border:1px solid var(--iron);color:var(--smoke);
+  transition:all .2s;display:inline-flex;align-items:center;gap:9px;
+}
+.btn:hover,.btn:focus-visible{border-color:var(--amber);color:var(--bone);background:rgba(246,135,42,.06)}
+.btn.solid{background:var(--amber);color:#0B0B0C;border-color:var(--amber);font-weight:700}
+.btn.solid:hover{background:#FF9840;color:#0B0B0C}
+
+/* ---------- seções ---------- */
+section{padding:96px 0;border-top:1px solid var(--iron)}
+.sec-label{
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--amber-dim);
+  margin-bottom:36px;
+}
+h2{font-size:clamp(1.6rem,3.4vw,2.3rem);font-weight:600;letter-spacing:-.02em;margin-bottom:22px}
+p.body{color:var(--smoke);max-width:660px;margin-bottom:16px}
+p.body strong{color:var(--bone);font-weight:500}
+p.body a{color:var(--amber);text-decoration:none;border-bottom:1px solid var(--wire)}
+p.body a:hover{border-color:var(--amber)}
+
+/* ---------- pipeline ---------- */
+.pipe{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:46px 0 10px}
+.node{
+  border:1px solid var(--iron);border-right:none;padding:22px 18px;position:relative;
+  transition:background .25s,border-color .25s;
+}
+.node:last-child{border-right:1px solid var(--iron)}
+.node:hover{background:var(--carbon);border-color:var(--wire)}
+.node .n{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--amber);letter-spacing:.14em}
+.node h3{font-size:1rem;font-weight:600;margin:10px 0 6px}
+.node p{font-size:.85rem;color:var(--smoke);line-height:1.5}
+@media(max-width:760px){
+  .pipe{grid-template-columns:1fr}
+  .node{border-right:1px solid var(--iron);border-bottom:none}
+  .node:last-child{border-bottom:1px solid var(--iron)}
+}
+
+/* ---------- publicação ---------- */
+.pub{
+  border:1px solid var(--iron);border-left:3px solid var(--amber);
+  padding:28px 30px;background:var(--carbon);border-radius:2px;
+  text-decoration:none;display:block;transition:transform .2s,border-color .2s;
+}
+.pub:hover,.pub:focus-visible{transform:translateX(4px);border-color:var(--wire);border-left-color:var(--amber)}
+.pub .venue{font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--amber);letter-spacing:.1em;margin-bottom:12px}
+.pub h3{font-size:1.15rem;font-weight:600;margin-bottom:10px;line-height:1.4}
+.pub .authors{font-size:.88rem;color:var(--smoke)}
+.pub .go{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--smoke);margin-top:16px;display:block}
+.pub:hover .go{color:var(--amber)}
+
+/* ---------- perfis ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--iron);border:1px solid var(--iron)}
+.card{
+  background:var(--void);padding:26px 24px;text-decoration:none;
+  transition:background .22s;display:block;
+}
+.card:hover,.card:focus-visible{background:var(--carbon)}
+.card .k{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--amber-dim);letter-spacing:.16em;text-transform:uppercase}
+.card h3{font-size:1.02rem;font-weight:600;margin:10px 0 6px}
+.card p{font-size:.84rem;color:var(--smoke)}
+.card:hover .k{color:var(--amber)}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--iron);padding:52px 0 64px;color:var(--smoke);font-size:.84rem}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+footer .mono{font-family:'JetBrains Mono',monospace;font-size:.76rem}
+footer a{color:var(--smoke);text-decoration:none}
+footer a:hover{color:var(--amber)}
+
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="bus"></div>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">pwned<b>.</b>com<b>.</b>br</div>
+    <div class="links">
+      <a href="#pesquisa">pesquisa</a>
+      <a href="#publicacoes">publicações</a>
+      <a href="#perfis">perfis</a>
+      <a href="#contato">contato</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Mestrado em Computação · Segurança da Informação · UFU</div>
+    <h1>Detectando intrusões<br>onde a rede não<br>pode <span>parar</span>.</h1>
+    <p class="lede">Sou <strong>Lucas A. Martins</strong>. Pesquiso detecção de intrusão em subestações digitais — tráfego <strong>IEC 61850 GOOSE</strong> analisado por modelos de linguagem e aplicado em <strong>plano de dados programável (P4)</strong>, na linha de Segurança da Informação do Programa de Pós-Graduação da UFU.</p>
+    <div class="cta">
+      <a class="btn solid" href="https://sol.sbc.org.br/index.php/sbrc_estendido/article/view/42585/42352" target="_blank" rel="noopener">Ler o artigo mais recente →</a>
+      <a class="btn" href="https://github.com/lucastuxnet" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://horizonlabs.ai/" target="_blank" rel="noopener">Horizon Labs</a>
+    </div>
+  </div>
+</header>
+
+<section id="pesquisa">
+  <div class="wrap">
+    <div class="sec-label">Linha de pesquisa</div>
+    <h2>LLMs gerando regras de detecção que rodam no switch</h2>
+    <p class="body">Subestações digitais trocam mensagens GOOSE em milissegundos. Um IDS convencional, rodando em software fora do caminho do pacote, chega tarde demais. A proposta é fechar esse intervalo: usar modelos de linguagem para extrair indicadores de ataque a partir de capturas reais e traduzir esses indicadores em regras que executam diretamente no plano de dados.</p>
+    <p class="body">O pipeline é automatizado de ponta a ponta e validado em <strong>BMv2</strong> e no <strong>ASIC Tofino (TNA)</strong>, mantendo a detecção na velocidade da linha.</p>
+
+    <div class="pipe">
+      <div class="node"><div class="n">ETAPA 01</div><h3>Ingestão</h3><p>Capturas de tráfego GOOSE de subestação são normalizadas e segmentadas.</p></div>
+      <div class="node"><div class="n">ETAPA 02</div><h3>Red flags</h3><p>O LLM identifica desvios de comportamento e os descreve como indicadores.</p></div>
+      <div class="node"><div class="n">ETAPA 03</div><h3>Regras</h3><p>Indicadores viram regras de detecção determinísticas e auditáveis.</p></div>
+      <div class="node"><div class="n">ETAPA 04</div><h3>Plano de dados</h3><p>As regras são compiladas em P4 e instaladas no switch programável.</p></div>
+    </div>
+
+    <p class="body" style="margin-top:36px">Pesquisa desenvolvida junto ao grupo <a href="https://horizonlabs.ai/" target="_blank" rel="noopener">Horizon Labs</a>, sob orientação do <a href="http://lattes.cnpq.br/9401130360785458" target="_blank" rel="noopener">Prof. Silvio E. Quincozes</a>.</p>
+  </div>
+</section>
+
+<section id="publicacoes">
+  <div class="wrap">
+    <div class="sec-label">Publicação mais recente</div>
+    <a class="pub" href="https://sol.sbc.org.br/index.php/sbrc_estendido/article/view/42585/42352" target="_blank" rel="noopener">
+      <div class="venue">SBRC 2026 · SALÃO DE FERRAMENTAS · SBC OPENLIB</div>
+      <h3>Detecção de intrusão em tráfego IEC 61850 GOOSE assistida por LLM com aplicação em plano de dados programável</h3>
+      <p class="authors">Lucas A. Martins, Camilla B. Quincozes, Silvio E. Quincozes, Marcelo Caggiani Luizelli</p>
+      <span class="go">Abrir na Biblioteca Digital da SBC ↗</span>
+    </a>
+  </div>
+</section>
+
+<section id="perfis">
+  <div class="wrap">
+    <div class="sec-label">Perfis acadêmicos</div>
+    <h2>Onde encontrar o restante</h2>
+    <div class="grid" style="margin-top:34px">
+      <a class="card" href="http://lattes.cnpq.br/9044670798242288" target="_blank" rel="noopener">
+        <div class="k">CNPq</div><h3>Currículo Lattes</h3><p>Formação, produção científica e histórico completo.</p>
+      </a>
+      <a class="card" href="https://scholar.google.com.br/citations?hl=pt-BR&user=w0TW6vgAAAAJ" target="_blank" rel="noopener">
+        <div class="k">Google</div><h3>Google Scholar</h3><p>Publicações indexadas e métricas de citação.</p>
+      </a>
+      <a class="card" href="https://horizonlabs.ai/" target="_blank" rel="noopener">
+        <div class="k">Grupo</div><h3>Horizon Labs</h3><p>Grupo de pesquisa em segurança e redes.</p>
+      </a>
+      <a class="card" href="http://lattes.cnpq.br/9401130360785458" target="_blank" rel="noopener">
+        <div class="k">Orientação</div><h3>Prof. Silvio E. Quincozes</h3><p>Orientador · Lattes CNPq.</p>
+      </a>
+      <a class="card" href="https://github.com/lucastuxnet" target="_blank" rel="noopener">
+        <div class="k">Código</div><h3>GitHub</h3><p>Implementações em P4, scripts e experimentos.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="wrap">
+    <div class="sec-label">Contato</div>
+    <h2>Aberto a colaborações</h2>
+    <p class="body">Interesse em pesquisa sobre segurança de redes elétricas, IEC 61850, plano de dados programável ou aplicações de LLM em detecção de intrusão? Escreva.</p>
+    <div class="cta" style="margin-top:32px">
+      <a class="btn solid" href="mailto:lucas.martins@ufu.br">lucas.martins@ufu.br</a>
+      <a class="btn" href="https://www.linkedin.com/in/lucasmartinns/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/lucastuxnet" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="mono">pwned.com.br — Uberlândia, MG · Brasil</div>
+    <div class="mono"><a href="mailto:lucas.martins@ufu.br">lucas.martins@ufu.br</a> · <a href="https://www.linkedin.com/in/lucasmartinns/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/lucastuxnet" target="_blank" rel="noopener">GitHub</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
